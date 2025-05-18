@@ -4,8 +4,8 @@ include ../Makefile.envs
 all: emsdk/.complete
 
 emsdk/.complete: ../Makefile.envs $(wildcard patches/*.patch)
-	if [ -d emsdk ]; then rm -rf emsdk; fi
-	git clone --depth 1 https://github.com/emscripten-core/emsdk.git
+	# if [ -d emsdk ]; then rm -rf emsdk; fi
+	# git clone --depth 1 https://github.com/emscripten-core/emsdk.git
 	cd emsdk && ./emsdk install --build=Release $(PYODIDE_EMSCRIPTEN_VERSION)
 	cd emsdk/upstream/emscripten/ && cat ../../../patches/*.patch | patch -p1 --verbose
 	cd emsdk && ./emsdk install --build=Release $(PYODIDE_EMSCRIPTEN_VERSION) ccache-git-emscripten-64bit
